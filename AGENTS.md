@@ -1,0 +1,51 @@
+# TRAMA — web oficial
+
+Cobogós y revestimientos de concreto (Asunción, Paraguay). Next.js 16 (App Router) + TypeScript + Tailwind v4. Deploy a Vercel.
+
+## Git
+
+- **`main` es producción**: Vercel builda de `main`. Todos los cambios van directo a `main`.
+- Única rama de prueba: `prueba`, y solo cuando Diego lo pida explícitamente. No crear ramas por pedido.
+- Diego a veces sube archivos por la web de GitHub: antes de trabajar, `git fetch origin main` y ordenar cualquier imagen suelta en la raíz dentro de `public/images/`.
+
+## Fuente de verdad del diseño
+
+El prototipo de Claude Design (`Trama Web v3.dc.html`) manda sobre su README. Se replicó tal cual (copy, colores, tamaños con clamp(), radios) salvo la galería "Muros con presencia", rediseñada a pedido de Diego.
+
+## Reglas de contenido
+
+- Sin precios y sin pago online. Todo es sobre pedido: seña 50%, entrega en 15 días.
+- Todos los CTA abren WhatsApp con el mensaje armado.
+- Medidas de cobogós y rinde por m² son provisorios.
+- No se usa el isotipo; donde iba, va el logo `trama-carbon.svg`.
+
+## Estructura
+
+- `lib/catalog.ts` — colores, categorías, 12 productos, cálculo m²/piezas.
+- `lib/content.ts` — textos de la home (beneficios, pasos, FAQ) y galería.
+- `lib/whatsapp.ts` — único lugar con el número (`NEXT_PUBLIC_WHATSAPP`, fallback 595981625546).
+- `lib/cart.ts` — carrito global persistido en `localStorage['trama-cart-v3']`.
+- Tokens en `app/globals.css`: `carbon`, `terracota`, `hormigon`, `muted`, `arena`, `tone`, `placeholder`. Clases: `shell`, `section`, `display`, `t1`, `t2`, `t3`, `lede`, `copy`, `kicker`, `num`, `pill-dot`.
+
+## Imágenes (`public/images/`)
+
+- `logo/` logotipos SVG.
+- `recortes/` piezas sobre fondo blanco (se muestran con `mix-blend-mode: multiply`).
+- `productos/` fotos de producto.
+- `obras/` fotos de muros terminados; `obras/galeria/` versiones retocadas (luz, nitidez) para la home.
+- `taller/` fotos del taller.
+- `og/` imagen para compartir en redes.
+
+Hay fotos guardadas sin usar todavía (`placa-rosa`, `cobogo-noche`, `cob-diagonal-torre*`, `taller-moldes`).
+
+## Comandos
+
+```bash
+npm run dev     # desarrollo
+npm run build   # build de producción
+npm run lint    # eslint
+```
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.

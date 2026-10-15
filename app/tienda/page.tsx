@@ -1,0 +1,12 @@
+import type { Metadata } from "next";
+import Shop from "@/components/Shop";
+
+export const metadata: Metadata = {
+  title: "Tienda",
+  description:
+    "Revestimientos y cobogós de concreto en 5 colores, fabricados sobre pedido. Armá tu carrito y te pasamos el presupuesto por WhatsApp.",
+};
+
+export default function TiendaPage() {
+  return <Shop active="todos" />;
+}

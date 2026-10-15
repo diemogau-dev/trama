@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  --color-carbon: #2b1710;
+  --color-terracota: #c35b36;
+  --color-hormigon: #ece9e4;
+  --color-muted: #6b5a52;
+  --color-arena: #cfc6bd;
+  --color-tone: #e4dfd8;
+  --color-placeholder: #d8d2ca;
+  --font-sans: var(--font-hanken), "Hanken Grotesk", sans-serif;
+}
+
+@layer base {
+  /* Base del prototipo (Trama Web v3.dc.html) */
+  html {
+    scroll-padding-top: 76px;
+    /* El prototipo usa el line-height por defecto del navegador, no el 1.5 de preflight. */
+    line-height: normal;
+  }
+  body {
+    margin: 0;
+    background: #ece9e4;
+    color: #2b1710;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  a {
+    color: #c35b36;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #2b1710;
+  }
+  button,
+  input {
+    font-family: inherit;
+    color: inherit;
+  }
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 0;
+  }
+}
+
+@layer components {
+  .shell {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 64px);
+  }
+  .kicker {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #6b5a52;
+  }
+  .display {
+    font-size: clamp(52px, 7vw, 96px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+  }
+  .t1 {
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+  .t2 {
+    font-size: clamp(30px, 3.4vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    font-weight: 500;
+  }
+  .t3 {
+    font-size: clamp(22px, 2vw, 28px);
+    line-height: 1.2;
+    font-weight: 500;
+  }
+  .lede {
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+  .copy {
+    font-size: clamp(16px, 1.2vw, 18px);
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+  .num {
+    font-weight: 200;
+    line-height: 1;
+    color: #c35b36;
+  }
+  .pill-dot {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 22px;
+    height: 10px;
+    border-radius: 5px;
+    background: #c35b36;
+  }
+  .section {
+    padding: clamp(72px, 9vw, 140px) 0;
+  }
+}
