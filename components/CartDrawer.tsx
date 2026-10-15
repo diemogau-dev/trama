@@ -205,7 +205,7 @@ export default function CartDrawer() {
             </div>
             <div className="flex items-start gap-3 rounded-[14px] bg-hormigon px-4 py-[14px] text-[14px] leading-[1.5]">
               <span className="mt-[6px] h-2 w-[18px] shrink-0 rounded-[4px] bg-terracota" />
-              Fabricación sobre pedido. Seña del 50% al confirmar y entrega en 15 días. Te enviamos el presupuesto con flete por WhatsApp.
+              Fabricación sobre pedido. Seña del 50% al confirmar y entrega en 30 días. Te enviamos el presupuesto con flete por WhatsApp.
             </div>
             <a
               href={waCart}

@@ -18,7 +18,7 @@ const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   : "http://localhost:3000";
 
 const description =
-  "Cobogós y placas de concreto de alta performance, fabricados a mano en nuestro taller de Asunción. Sobre pedido, entrega en 15 días y envíos a todo el Paraguay.";
+  "Cobogós y placas de concreto de alta performance, fabricados a mano en nuestro taller de Asunción. Sobre pedido, entrega en 30 días y envíos a todo el Paraguay.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

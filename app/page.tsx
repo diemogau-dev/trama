@@ -50,7 +50,7 @@ export default function Home() {
           </div>
           <div className="mt-[clamp(64px,8vw,112px)] flex flex-wrap justify-between gap-x-10 gap-y-4 border-t border-[rgba(236,233,228,.3)] pt-[22px] pb-7 text-[15px] text-hormigon">
             <div className="flex flex-wrap gap-x-10 gap-y-3">
-              {["Concreto de alta performance", "Entrega en 15 días", "Envíos a todo el país"].map((t) => (
+              {["Concreto de alta performance", "Entrega en 30 días", "Envíos a todo el país"].map((t) => (
                 <span key={t} className="flex items-center gap-3">
                   <span className="pill-dot" />
                   {t}
@@ -204,7 +204,7 @@ export default function Home() {
             <div className="flex max-w-[760px] flex-col gap-5">
               <span className="kicker">Cómo comprar</span>
               <h2 className="t1">
-                De la tienda a tu muro, <span className="text-terracota">en 15 días</span>.
+                De la tienda a tu muro, <span className="text-terracota">en 30 días</span>.
               </h2>
             </div>
             <p className="lede max-w-[420px]">
@@ -288,11 +288,12 @@ function CategoryTile({
   cta: string;
 }) {
   return (
-    <Link href={href} className="flex flex-col gap-7 text-carbon hover:text-carbon">
+    <Link href={href} className="flex h-full flex-col gap-7 text-carbon hover:text-carbon">
       <div className="relative aspect-[4/5] overflow-hidden rounded-[999px_999px_24px_24px] bg-placeholder">
         <Image src={src} alt={alt} fill sizes="(max-width: 900px) 100vw, 50vw" className="object-cover" style={{ objectPosition: pos }} />
       </div>
-      <div className="flex flex-wrap items-end justify-between gap-5">
+      {/* Texto arriba y botón siempre abajo a la izquierda: ambos botones quedan alineados. */}
+      <div className="flex flex-1 flex-col items-start justify-between gap-5">
         <div className="flex max-w-[440px] flex-col gap-3">
           <h3 className="t2">{title}</h3>
           <p className="copy">{text}</p>

@@ -21,7 +21,7 @@ export default function Shop({ active }: { active: CategoryId | "todos" }) {
         <div className="mb-9 flex flex-wrap items-end justify-between gap-x-16 gap-y-5">
           <h1 className="display">Tienda</h1>
           <p className="copy max-w-[480px]">
-            Todas las piezas se fabrican sobre pedido en 5 colores. Seña del 50% al confirmar y entrega en 15 días. Armá tu
+            Todas las piezas se fabrican sobre pedido en 5 colores. Seña del 50% al confirmar y entrega en 30 días. Armá tu
             carrito y te pasamos el presupuesto por WhatsApp.
           </p>
         </div>

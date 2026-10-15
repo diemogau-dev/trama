@@ -26,7 +26,7 @@ export default function Header() {
   return (
     <>
       <div className="flex flex-wrap justify-center gap-[10px] bg-carbon px-5 py-[11px] text-center text-[14px] leading-[1.3] text-hormigon">
-        <span>Fabricación sobre pedido · Seña 50% · Entrega en 15 días</span>
+        <span>Fabricación sobre pedido · Seña 50% · Entrega en 30 días</span>
         <Link href="/socios" className="text-hormigon underline underline-offset-[3px] hover:text-white">
           ¿Sos arquitecto o revendedor?
         </Link>

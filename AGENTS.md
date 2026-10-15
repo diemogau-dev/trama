@@ -10,11 +10,11 @@ Cobogós y revestimientos de concreto (Asunción, Paraguay). Next.js 16 (App Rou
 
 ## Fuente de verdad del diseño
 
-El prototipo de Claude Design (`Trama Web v3.dc.html`) manda sobre su README. Se replicó tal cual (copy, colores, tamaños con clamp(), radios) salvo la galería "Muros con presencia", rediseñada a pedido de Diego.
+El prototipo de Claude Design (`Trama Web v3.dc.html`) manda sobre su README. Se replicó tal cual (copy, colores, tamaños con clamp(), radios) salvo la galería "Muros con presencia" (rediseñada a pedido de Diego, con pestañas Cobogós / Revestimientos) y los botones de las tarjetas de categoría (alineados abajo a la izquierda).
 
 ## Reglas de contenido
 
-- Sin precios y sin pago online. Todo es sobre pedido: seña 50%, entrega en 15 días.
+- Sin precios y sin pago online. Todo es sobre pedido: seña 50%, entrega en 30 días.
 - Todos los CTA abren WhatsApp con el mensaje armado.
 - Medidas de cobogós y rinde por m² son provisorios.
 - No se usa el isotipo; donde iba, va el logo `trama-carbon.svg`.
@@ -32,7 +32,7 @@ El prototipo de Claude Design (`Trama Web v3.dc.html`) manda sobre su README. Se
 - `logo/` logotipos SVG.
 - `recortes/` piezas sobre fondo blanco (se muestran con `mix-blend-mode: multiply`).
 - `productos/` fotos de producto.
-- `obras/` fotos de muros terminados; `obras/galeria/` versiones retocadas (luz, nitidez) para la home.
+- `obras/` fotos de muros terminados; `obras/revestimientos/` fotos originales de placas; `obras/galeria/` versiones retocadas (luz, nitidez, agrandadas) que usa la home.
 - `taller/` fotos del taller.
 - `og/` imagen para compartir en redes.
 

@@ -83,7 +83,7 @@ export default function ProductView({ p }: { p: Product }) {
         <div className="flex flex-wrap gap-2">
           <span className="flex items-center gap-[10px] rounded-full bg-carbon px-4 py-[10px] text-[14px] text-hormigon">
             <span className="h-2 w-[18px] rounded-[4px] bg-terracota" />
-            Sobre pedido · Seña 50% · Entrega en 15 días
+            Sobre pedido · Seña 50% · Entrega en 30 días
           </span>
         </div>
         <div className="grid grid-cols-2 gap-x-6 gap-y-[18px] border-y border-[rgba(43,23,16,.18)] py-6">
