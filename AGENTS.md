@@ -34,7 +34,7 @@ El prototipo de Claude Design (`Trama Web v3.dc.html`) manda sobre su README. Se
 - `productos/` fotos de producto.
 - `obras/` fotos de muros terminados; `obras/revestimientos/` fotos originales de placas; `obras/galeria/` versiones retocadas (luz, nitidez, agrandadas) que usa la home.
 - `taller/` fotos del taller.
-- `og/` imagen para compartir en redes.
+- `og/` imagen para compartir en redes (`trama-logo.png`: logo hormigón sobre fondo carbón, 1200×630).
 
 Hay fotos guardadas sin usar todavía (`placa-rosa`, `cobogo-noche`, `cob-diagonal-torre*`, `taller-moldes`).
 

@@ -35,12 +35,18 @@ export const metadata: Metadata = {
     siteName: "Trama",
     images: [
       {
-        url: "/images/og/trama-share.jpg",
+        url: "/images/og/trama-logo.png",
         width: 1200,
         height: 630,
-        alt: "Fachada de casa con muro de cobogó terracota",
+        alt: "Trama",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Trama · Cobogós y revestimientos de concreto",
+    description,
+    images: ["/images/og/trama-logo.png"],
   },
 };
 
