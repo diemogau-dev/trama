@@ -1,15 +1,15 @@
 import Image from "next/image";
-import { GALLERY } from "@/lib/content";
+import { GALLERY, type GalleryPhoto } from "@/lib/content";
 
 /**
  * Filas justificadas: en desktop las 3 fotos de cada fila comparten altura
  * (flex-grow proporcional al aspecto: horizontales 3:2, verticales 4:5).
  * En mobile la horizontal va a ancho completo y las dos verticales debajo, lado a lado.
  */
-export default function Gallery() {
+export default function Gallery({ rows = GALLERY }: { rows?: GalleryPhoto[][] }) {
   return (
     <div className="flex flex-col gap-[clamp(10px,1.2vw,16px)]">
-      {GALLERY.map((row, r) => (
+      {rows.map((row, r) => (
         <div key={r} className="grid grid-cols-2 gap-[clamp(10px,1.2vw,16px)] md:flex">
           {row.map((ph) => (
             <figure

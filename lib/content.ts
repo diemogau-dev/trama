@@ -64,3 +64,45 @@ export const GALLERY: GalleryPhoto[][] = [
     { src: G + "rev-dormitorio.jpg", alt: "Dormitorio con cabecera de placas de concreto y pared de ladrillo", pos: "40% 50%" },
   ],
 ];
+
+/** Galería de la tienda, solo cobogós (las 12 fotos). */
+export const GALLERY_COBOGOS: GalleryPhoto[][] = [
+  [
+    { src: G + "obra-casa-terracota.jpg", alt: "Fachada de casa con muro de cobogó terracota junto a la piscina", wide: true, pos: "50% 60%" },
+    { src: G + "obra-ovalo-flores.jpg", alt: "Muro de cobogó Óvalo con agapantos en flor", pos: "50% 55%" },
+    { src: G + "obra-diagonal-jardin.jpg", alt: "Muro perimetral de cobogó Diagonal en un jardín", pos: "50% 72%" },
+  ],
+  [
+    { src: G + "obra-hexagono.jpg", alt: "Muro de cobogó hexagonal terracota a contraluz", pos: "50% 50%" },
+    { src: G + "cobogo-terracota.jpg", alt: "Living con muro de cobogó terracota y plantas", wide: true, pos: "50% 50%" },
+    { src: G + "obra-circulo-sol.jpg", alt: "Cobogó de círculos proyectando luz sobre una mesada de madera", pos: "50% 45%" },
+  ],
+  [
+    { src: G + "obra-circulo-interior.jpg", alt: "Muro interior de cobogó de círculos con jardín y sillón", pos: "50% 50%" },
+    { src: G + "obra-circulo-render.jpg", alt: "Divisorio de cobogó de círculos en un estudio", pos: "50% 50%" },
+    { src: G + "obra-cubo-terracota.jpg", alt: "Volumen de cobogó terracota con cantero", wide: true, pos: "50% 55%" },
+  ],
+  [
+    { src: G + "obra-circulo-comedor.jpg", alt: "Comedor separado de la cocina con un divisorio de cobogó", wide: true, pos: "50% 50%" },
+    { src: G + "obra-ovalo-noche.jpg", alt: "Muro de cobogó Óvalo iluminado de noche", pos: "50% 50%" },
+    { src: G + "cobogo-cochera.jpg", alt: "Cochera con muro de cobogó iluminado al atardecer", pos: "50% 60%" },
+  ],
+];
+
+/** Galería de la tienda, solo revestimientos (las 8 fotos). */
+export const GALLERY_REVESTIMIENTOS: GalleryPhoto[][] = [
+  [
+    { src: G + "rev-fachada-casa.jpg", alt: "Fachada de casa revestida con placas de concreto", wide: true, pos: "50% 50%" },
+    { src: G + "rev-escalera-madera.jpg", alt: "Escalera de madera junto a un muro de placas de concreto", pos: "50% 50%" },
+    { src: G + "rev-neon.jpg", alt: "Muro de placas de concreto con un cartel de neón", pos: "50% 50%" },
+  ],
+  [
+    { src: G + "rev-escalera-sombra.jpg", alt: "Placas de concreto con la sombra de una planta sobre la escalera", pos: "30% 50%" },
+    { src: G + "rev-cocina-comedor.jpg", alt: "Cocina y comedor con un muro de placas de concreto", wide: true, pos: "50% 55%" },
+    { src: G + "rev-dormitorio.jpg", alt: "Dormitorio con cabecera de placas de concreto y pared de ladrillo", pos: "40% 50%" },
+  ],
+  [
+    { src: G + "rev-piscina.jpg", alt: "Muro de placas de concreto junto a una piscina", wide: true, pos: "50% 60%" },
+    { src: G + "rev-pasillo-puerta.jpg", alt: "Pasillo revestido con placas de concreto", wide: true, pos: "50% 40%" },
+  ],
+];

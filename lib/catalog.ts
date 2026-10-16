@@ -145,8 +145,6 @@ export const TONE = "#E4DFD8";
 export const getProduct = (id: string) => PRODUCTS.find((p) => p.id === id);
 export const colorName = (id: string) => (COLORS.find((c) => c.id === id) ?? COLORS[0]).name;
 export const fullName = (p: Product) => (p.cat === "revestimientos" ? p.name : "Cobogó " + p.name);
-export const productNumber = (p: Product) =>
-  String(PRODUCTS.filter((x) => x.cat === p.cat).findIndex((x) => x.id === p.id) + 1).padStart(2, "0");
 
 // Formato numérico del prototipo: miles con punto, decimales con coma.
 export const fmtN = (n: number) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -173,6 +171,3 @@ export const jointPattern = (p: Product, k: number) => ({
   backgroundSize: `${(p.w ?? 20) * k}px ${(p.h ?? 20) * k}px`,
   backgroundPosition: "center",
 });
-
-export const productWa = (p: Product) =>
-  `¡Hola Trama! Me interesa ${p.cat === "revestimientos" ? "el revestimiento" : "el cobogó"} ${p.name} (${p.dims}). ¿Me pasan presupuesto?`;

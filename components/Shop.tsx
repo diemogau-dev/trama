@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { CATEGORY_IDS, CATS, PRODUCTS, type CategoryId } from "@/lib/catalog";
+import { GALLERY, GALLERY_COBOGOS, GALLERY_REVESTIMIENTOS } from "@/lib/content";
+import Gallery from "./Gallery";
 import ProductCard from "./ProductCard";
 
 const TABS: { key: CategoryId | "todos"; label: string; href: string }[] = [
@@ -57,6 +59,21 @@ export default function Shop({ active }: { active: CategoryId | "todos" }) {
             </div>
           </section>
         ))}
+        {/* Fotos de obras: cambian según la pestaña (Todo = mezcla, como en la home). */}
+        <section id="obras" className="mt-[clamp(80px,9vw,140px)]">
+          <div className="mb-[clamp(40px,5vw,64px)] flex flex-wrap items-end justify-between gap-x-16 gap-y-6">
+            <h2 className="t1 max-w-[780px]">
+              Muros con <span className="text-terracota">presencia</span>.
+            </h2>
+            <p className="lede max-w-[440px]">
+              Casas, locales y jardines donde el muro deja de ser fondo y pasa a ser protagonista.
+            </p>
+          </div>
+          <Gallery
+            key={active}
+            rows={active === "revestimientos" ? GALLERY_REVESTIMIENTOS : active === "cobogos" ? GALLERY_COBOGOS : GALLERY}
+          />
+        </section>
       </div>
     </main>
   );

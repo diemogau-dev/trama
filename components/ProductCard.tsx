@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { CATS, COLORS, TONE, fmtDec, fullName, productNumber, productWa, type Product } from "@/lib/catalog";
+import { COLORS, TONE, fmtDec, fullName, type Product } from "@/lib/catalog";
 import { cart } from "@/lib/cart";
-import { waLink } from "@/lib/whatsapp";
 import ProductImage from "./ProductImage";
 
 export default function ProductCard({ p }: { p: Product }) {
@@ -14,12 +13,6 @@ export default function ProductCard({ p }: { p: Product }) {
       <Link href={href} className="relative block aspect-square overflow-hidden rounded-[20px] hover:opacity-[.92]" style={{ background: TONE }}>
         <ProductImage product={p} image={p.gallery[0]} inset="11%" scale={1.6} alt={name} sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 25vw" />
         {!p.gallery[0] && <ComingSoon />}
-        <span className="absolute top-[14px] left-4 rounded-full bg-[rgba(255,255,255,.78)] px-[10px] py-1 text-[18px] leading-[1.1] font-light text-carbon">
-          {productNumber(p)}
-        </span>
-        <span className="absolute top-4 right-4 rounded-full bg-[rgba(255,255,255,.78)] px-3 py-[6px] text-[12px] font-medium tracking-[.12em] text-carbon uppercase">
-          {CATS[p.cat].short}
-        </span>
       </Link>
       <div className="flex flex-col gap-2">
         <Link href={href} className="text-[22px] leading-[1.2] font-medium text-carbon hover:text-terracota">
@@ -35,23 +28,13 @@ export default function ProductCard({ p }: { p: Product }) {
           <span className="ml-1 text-[13px] text-muted">5 colores</span>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-2">
-        <button
-          type="button"
-          onClick={() => cart.add(p.id)}
-          className="h-[46px] cursor-pointer rounded-full border-[1.5px] border-carbon bg-transparent text-[15px] font-medium hover:bg-carbon hover:text-hormigon"
-        >
-          Al carrito
-        </button>
-        <a
-          href={waLink(productWa(p))}
-          target="_blank"
-          rel="noopener"
-          className="flex h-[46px] items-center justify-center rounded-full bg-terracota text-[15px] font-medium text-white hover:bg-carbon hover:text-hormigon"
-        >
-          Comprar
-        </a>
-      </div>
+      <button
+        type="button"
+        onClick={() => cart.add(p.id)}
+        className="h-[46px] cursor-pointer rounded-full border-none bg-carbon text-[15px] font-medium text-hormigon hover:bg-terracota hover:text-white"
+      >
+        Agregar al carrito
+      </button>
     </article>
   );
 }

@@ -10,7 +10,7 @@ Cobogós y revestimientos de concreto (Asunción, Paraguay). Next.js 16 (App Rou
 
 ## Fuente de verdad del diseño
 
-El prototipo de Claude Design (`Trama Web v3.dc.html`) manda sobre su README. Se replicó tal cual (copy, colores, tamaños con clamp(), radios) salvo la galería "Muros con presencia" (rediseñada a pedido de Diego: estática, 12 fotos, mitad cobogós y mitad revestimientos mezcladas) y los botones de las tarjetas de categoría (alineados abajo a la izquierda).
+El prototipo de Claude Design (`Trama Web v3.dc.html`) manda sobre su README. Se replicó tal cual (copy, colores, tamaños con clamp(), radios) salvo la galería "Muros con presencia" (rediseñada a pedido de Diego: estática, 12 fotos, mitad cobogós y mitad revestimientos mezcladas; en la tienda se repite debajo del catálogo según la pestaña: todo = mezcla, revestimientos = 8 fotos, cobogós = 12 fotos) y los botones de las tarjetas de categoría (alineados abajo a la izquierda).
 
 ## Reglas de contenido
 
