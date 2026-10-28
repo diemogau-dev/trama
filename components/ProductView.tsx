@@ -43,7 +43,6 @@ export default function ProductView({ p }: { p: Product }) {
     ["Colores", `${COLORS.length} colores en la masa`],
     ["Uso", CATS[p.cat].use],
     ["Material", "Concreto de alta performance"],
-    ["Fórmula", "Según uso: interior o exterior"],
   ];
   const wa = waLink(
     `¡Hola Trama! Quiero presupuesto para ${isRev ? "el revestimiento" : "el cobogó"} ${p.name} (${p.dims}) en ${colorName(color)}: ${fmtDec(c.m2)} m² (${fmtN(c.pieces)} ${p.unit}). La obra queda en: `,

@@ -25,7 +25,7 @@ El prototipo de Claude Design (`Trama Web v3.dc.html`) manda sobre su README. Se
 
 - `lib/catalog.ts` — colores, categorías, 14 productos, cálculo m²/piezas. `LEGACY_IDS` redirige URLs viejas y migra carritos guardados.
 - `lib/content.ts` — textos de la home (beneficios, pasos, FAQ) y galería.
-- `lib/whatsapp.ts` — único lugar con el número (`NEXT_PUBLIC_WHATSAPP`, fallback 595981625546).
+- `lib/whatsapp.ts` — único lugar con el número (`NEXT_PUBLIC_WHATSAPP`, fallback 595991629500 = 0991 629 500).
 - `lib/cart.ts` — carrito global persistido en `localStorage['trama-cart-v3']`.
 - Tokens en `app/globals.css`: `carbon`, `terracota`, `hormigon`, `muted`, `arena`, `tone`, `placeholder`. Clases: `shell`, `section`, `display`, `t1`, `t2`, `t3`, `lede`, `copy`, `kicker`, `num`, `pill-dot`.
 

@@ -1,5 +1,5 @@
 // Número en formato internacional, sin "+" ni espacios. Se configura en Vercel.
-export const WHATSAPP_NUMBER = (process.env.NEXT_PUBLIC_WHATSAPP || "595981625546").replace(/\D/g, "");
+export const WHATSAPP_NUMBER = (process.env.NEXT_PUBLIC_WHATSAPP || "595991629500").replace(/\D/g, "");
 
 export const WHATSAPP_DISPLAY =
   "+" + WHATSAPP_NUMBER.replace(/^(\d{3})(\d{3})(\d{3})(\d+)$/, "$1 $2 $3 $4");

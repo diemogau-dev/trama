@@ -49,15 +49,15 @@ export default function Footer() {
           <div className="flex flex-col gap-[14px]">
             <span className="text-[13px] font-medium tracking-[.16em] text-arena uppercase">Contacto</span>
             <a href={WA_GENERAL} target="_blank" rel="noopener" className={link}>WhatsApp {WHATSAPP_DISPLAY}</a>
-            <a href="https://instagram.com/tramapy" target="_blank" rel="noopener" className={link}>Instagram @tramapy</a>
-            <a href="mailto:tramapy@gmail.com" className={link}>tramapy@gmail.com</a>
+            <a href="https://www.instagram.com/tramaconcreto/" target="_blank" rel="noopener" className={link}>Instagram @tramaconcreto</a>
+            <a href="mailto:tramaconcreto@gmail.com" className={link}>tramaconcreto@gmail.com</a>
             <span>Taller en Asunción, Paraguay</span>
             <span>Envíos a todo el país</span>
           </div>
         </div>
         <div className="flex flex-wrap justify-between gap-3 border-t border-[rgba(236,233,228,.22)] pt-6 text-[14px] text-arena">
           <span>© 2026 Trama · Hecho a mano en Paraguay</span>
-          <span>trama.com.py</span>
+          <span>tramaconcreto.com</span>
         </div>
       </div>
     </footer>

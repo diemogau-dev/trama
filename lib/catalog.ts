@@ -32,7 +32,7 @@ export const CATS: Record<
     single: "Cobogó",
     short: "Cobogó",
     desc: "Piezas caladas para muros que filtran luz, aire y vista.",
-    use: "Perimetral, divisorio y fachada",
+    use: "Interior y exterior",
     place:
       "Se asientan con mortero como un ladrillo, con junta de 1 cm. En muros de más de 2 m sumá armadura horizontal cada 3 o 4 hiladas. Te enviamos la guía de colocación con tu pedido.",
   },
