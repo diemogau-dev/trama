@@ -4,6 +4,7 @@ import CartDrawer from "@/components/CartDrawer";
 import Fab from "@/components/Fab";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const hanken = Hanken_Grotesk({
@@ -13,9 +14,7 @@ const hanken = Hanken_Grotesk({
   display: "swap",
 });
 
-const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : "http://localhost:3000";
+const siteUrl = process.env.NODE_ENV === "production" ? SITE_URL : "http://localhost:3000";
 
 const description =
   "Cobogós y placas de concreto de alta performance, fabricados a mano en nuestro taller de Asunción. Sobre pedido, entrega en 30 días y envíos a todo el Paraguay.";
