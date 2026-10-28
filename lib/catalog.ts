@@ -1,15 +1,15 @@
 // Catálogo de Trama. Fuente: script del prototipo (Trama Web v3.dc.html), que manda sobre catalog.json.
 // Medidas de cobogós y rinde por m² son provisorios.
 
-export type ColorId = "gris" | "oscuro" | "ocre" | "musgo" | "mostaza";
+export type ColorId = "gris" | "marengo" | "terracota" | "olivo";
 export type Color = { id: ColorId; name: string; sw: string };
 
+/** Los 4 colores de lanzamiento. Las muestras coinciden con las fotos de producto en public/images/productos/colores/. */
 export const COLORS: Color[] = [
-  { id: "gris", name: "Gris natural", sw: "#B3AFA8" },
-  { id: "oscuro", name: "Gris oscuro", sw: "#55524F" },
-  { id: "ocre", name: "Ocre", sw: "#B98642" },
-  { id: "musgo", name: "Verde musgo", sw: "#6B7050" },
-  { id: "mostaza", name: "Amarillo mostaza", sw: "#CFA03A" },
+  { id: "gris", name: "Gris Natural", sw: "#B8B6B0" },
+  { id: "marengo", name: "Gris Marengo", sw: "#707172" },
+  { id: "terracota", name: "Terracota", sw: "#C88C70" },
+  { id: "olivo", name: "Verde Olivo", sw: "#969676" },
 ];
 
 export type CategoryId = "revestimientos" | "cobogos";
@@ -22,7 +22,7 @@ export const CATS: Record<
     name: "Revestimientos",
     single: "Revestimiento",
     short: "Revestimiento",
-    desc: "Placas, listones y cuadrados para vestir muros interiores y fachadas.",
+    desc: "Placas y azulejos de concreto para vestir muros interiores y fachadas.",
     use: "Interior y exterior",
     place:
       "Se pegan con adhesivo cementicio sobre revoque firme y nivelado. Para exterior usamos nuestra fórmula hidrorrepelente. Te enviamos la guía de colocación con tu pedido.",
@@ -40,8 +40,7 @@ export const CATS: Record<
 
 export const CATEGORY_IDS = Object.keys(CATS) as CategoryId[];
 
-/** "cut" = recorte sobre blanco (contain + multiply); "photo" = foto (cover). */
-export type GalleryImage = { src: string; kind: "cut" | "photo" };
+export type GalleryImage = { src: string; kind: "photo" };
 
 export type Product = {
   id: string;
@@ -50,50 +49,52 @@ export type Product = {
   dims: string;
   perM2: number;
   unit: string;
-  /** Medidas de la pieza en cm, para dibujar la grilla de juntas cuando no hay foto. */
-  w?: number;
-  h?: number;
+  /** Fotos extra (obra, taller, detalle). Las fotos por color salen de colorImage(). */
   gallery: GalleryImage[];
   desc: string;
 };
 
-const R = "/images/recortes/";
 const P = "/images/productos/";
+const F = "/images/productos/originales/";
 const O = "/images/obras/";
 const T = "/images/taller/";
-const cut = (src: string): GalleryImage => ({ src, kind: "cut" });
 const photo = (src: string): GalleryImage => ({ src, kind: "photo" });
 
 export const PRODUCTS: Product[] = [
   {
-    id: "placa-lisa", cat: "revestimientos", name: "Placa Lisa", dims: "100 × 50 cm", perM2: 2, unit: "placas", w: 100, h: 50,
+    id: "placa-lisa", cat: "revestimientos", name: "Placa Lisa", dims: "100 × 50 cm", perM2: 2, unit: "placas",
     gallery: [photo(P + "rev-lisa-muro.jpg")],
     desc: "Superficie lisa y continua, con el poro natural del concreto. Un fondo sereno para livings, recepciones y fachadas.",
   },
   {
-    id: "placa-furos", cat: "revestimientos", name: "Placa con Furos", dims: "100 × 50 cm", perM2: 2, unit: "placas",
-    gallery: [cut(R + "rev-furos-blanco.jpg"), photo(P + "material-placa.jpg")],
-    desc: "Placa lisa con perforaciones que marcan un ritmo de puntos de sombra, como el concreto visto con pasadores de encofrado.",
+    id: "placa-anclaje", cat: "revestimientos", name: "Placa con Puntos de Anclaje", dims: "100 × 45 cm", perM2: 2.2, unit: "placas",
+    gallery: [photo(F + "rev-placa-anclaje-gris.jpg"), photo(F + "rev-placa-anclaje-detalle.jpg"), photo(P + "material-placa.jpg")],
+    desc: "Placa lisa con seis puntos de anclaje a la vista que marcan un ritmo de sombras, como el concreto visto con pasadores de encofrado.",
   },
   {
-    id: "placa-relieve", cat: "revestimientos", name: "Placa con Relieve", dims: "100 × 50 cm", perM2: 2, unit: "placas",
-    gallery: [cut(R + "rev-relieve-gris-blanco.jpg"), cut(R + "rev-relieve-ocre-blanco.jpg"), photo(P + "rev-relieve-detalle.jpg")],
+    id: "placa-ripada", cat: "revestimientos", name: "Placa Ripada", dims: "100 × 40 cm", perM2: 2.5, unit: "placas",
+    gallery: [
+      photo(F + "rev-placa-ripada-gris.jpg"),
+      photo(F + "rev-placa-ripada-perspectiva.jpg"),
+      photo(F + "rev-placa-ripada-detalle.jpg"),
+      photo(P + "rev-relieve-detalle.jpg"),
+    ],
     desc: "Estrías verticales en relieve que dibujan líneas de luz y sombra a lo largo del día. Ideal para muros con luz rasante.",
   },
   {
-    id: "liston", cat: "revestimientos", name: "Listón Liso", dims: "50 × 10 cm", perM2: 20, unit: "listones", w: 50, h: 10,
-    gallery: [],
+    id: "azulejo-rectangular", cat: "revestimientos", name: "Azulejo de Concreto Rectangular", dims: "50 × 12 cm", perM2: 16.7, unit: "azulejos",
+    gallery: [photo(F + "azulejo-rectangular-gris.jpg")],
     desc: "Pieza angosta para colocar trabada, en espiga o en vertical. Arma muros con ritmo de ladrillo visto, en concreto.",
   },
   {
-    id: "cuadrado", cat: "revestimientos", name: "Cuadrado", dims: "10 × 10 cm", perM2: 100, unit: "piezas",
+    id: "azulejo-cuadrado", cat: "revestimientos", name: "Azulejo de Concreto Cuadrado", dims: "10 × 10 cm", perM2: 100, unit: "azulejos",
     gallery: [photo(P + "rev-cuadrado.jpg")],
     desc: "Pieza chica para revestir con detalle: barras, frentes de mesada, nichos y muros curvos.",
   },
   {
     id: "diagonal", cat: "cobogos", name: "Diagonal", dims: "20 × 20 × 7 cm", perM2: 25, unit: "piezas",
     gallery: [
-      cut(R + "diagonal.png"),
+      photo(F + "cob-diagonal-gris.jpg"),
       photo(P + "cob-diagonal-estudio.jpg"),
       photo(P + "cob-diagonal-perspectiva.jpg"),
       photo(O + "obra-diagonal-jardin.jpg"),
@@ -102,29 +103,29 @@ export const PRODUCTS: Product[] = [
     desc: "Un cuadrado partido en dos: una mitad abierta y otra en relieve. Girando las piezas armás rombos, zigzags o un muro entero de triángulos.",
   },
   {
-    id: "panal", cat: "cobogos", name: "Panal", dims: "23 × 20 × 7 cm", perM2: 24, unit: "piezas",
-    gallery: [cut(R + "panal.png"), photo(T + "taller-mesa.jpg")],
-    desc: "Hexágono con abertura circular. Encastra en panal y deja pasar mucha luz y mucho aire.",
+    id: "circular", cat: "cobogos", name: "Circular", dims: "20 × 20 × 7 cm", perM2: 25, unit: "piezas",
+    gallery: [photo(F + "cob-circular-terracota.jpg"), photo(F + "cob-circular-marengo.jpg")],
+    desc: "Una abertura redonda rodeada por un bisel suave que se hunde hacia el centro. La luz entra en anillos y el muro se vuelve un juego de círculos.",
   },
   {
-    id: "marco", cat: "cobogos", name: "Marco", dims: "20 × 20 × 7 cm", perM2: 25, unit: "piezas",
-    gallery: [cut(R + "marco.png")],
+    id: "cuadrado", cat: "cobogos", name: "Cuadrado", dims: "20 × 20 × 7 cm", perM2: 25, unit: "piezas",
+    gallery: [photo(F + "cob-cuadrado-olivo.jpg")],
     desc: "Una ventana chica dentro de un marco ancho. Más privacidad, sombra suave y un ritmo tranquilo.",
   },
   {
-    id: "encastre", cat: "cobogos", name: "Encastre", dims: "20 × 20 × 7 cm", perM2: 25, unit: "piezas",
-    gallery: [cut(R + "encastre.png")],
-    desc: "Las muescas laterales se encajan con la pieza vecina y el muro se lee como un tejido.",
+    id: "rectangular", cat: "cobogos", name: "Rectangular", dims: "30 × 15 × 7 cm", perM2: 22, unit: "piezas",
+    gallery: [photo(F + "cob-rectangular-gris.jpg"), photo(T + "taller-mesa.jpg")],
+    desc: "Una abertura larga y recta, como una persiana de concreto. Para muros perimetrales, cocheras y lavaderos.",
   },
   {
     id: "duo", cat: "cobogos", name: "Dúo", dims: "30 × 19 × 7 cm", perM2: 17.5, unit: "piezas",
-    gallery: [cut(R + "duo.png"), photo(P + "cob-duo-piezas.jpg")],
+    gallery: [photo(F + "cob-duo-gris.jpg"), photo(P + "cob-duo-piezas.jpg")],
     desc: "Dos aberturas de distinto tamaño en una pieza apaisada. Al rotarlas, el muro nunca se repite igual.",
   },
   {
-    id: "rendija", cat: "cobogos", name: "Rendija", dims: "30 × 15 × 7 cm", perM2: 22, unit: "piezas",
-    gallery: [cut(R + "rendija.png"), photo(T + "taller-mesa.jpg")],
-    desc: "Una abertura larga y recta, como una persiana de concreto. Para muros perimetrales, cocheras y lavaderos.",
+    id: "doble-circulo", cat: "cobogos", name: "Doble Círculo", dims: "40 × 19 × 7 cm", perM2: 13.2, unit: "piezas",
+    gallery: [photo(F + "cob-doble-circulo-terracota.jpg")],
+    desc: "Pieza apaisada con dos aberturas redondas y una superficie ondulada que cambia con la luz del día. Para muros con carácter escultórico.",
   },
   {
     id: "ovalo", cat: "cobogos", name: "Óvalo", dims: "40 × 14 × 7 cm", perM2: 17.8, unit: "piezas",
@@ -137,7 +138,30 @@ export const PRODUCTS: Product[] = [
     ],
     desc: "Pieza rectangular con el centro ovalado. Repetida, arma muros largos con un ritmo suave que de noche, con luz rasante, se vuelve escultura.",
   },
+  {
+    id: "panal", cat: "cobogos", name: "Panal", dims: "23 × 20 × 7 cm", perM2: 24, unit: "piezas",
+    gallery: [photo(T + "taller-mesa.jpg")],
+    desc: "Hexágono con abertura circular. Encastra en panal y deja pasar mucha luz y mucho aire.",
+  },
+  {
+    id: "encastre", cat: "cobogos", name: "Encastre", dims: "20 × 20 × 7 cm", perM2: 25, unit: "piezas",
+    gallery: [],
+    desc: "Las muescas laterales se encajan con la pieza vecina y el muro se lee como un tejido.",
+  },
 ];
+
+/** Ids anteriores, para redirigir URLs viejas y migrar carritos guardados. */
+export const LEGACY_IDS: Record<string, string> = {
+  "placa-furos": "placa-anclaje",
+  "placa-relieve": "placa-ripada",
+  liston: "azulejo-rectangular",
+  marco: "cuadrado",
+  rendija: "rectangular",
+};
+export const LEGACY_COLORS: Record<string, ColorId> = { oscuro: "marengo", ocre: "terracota", musgo: "olivo", mostaza: "gris" };
+
+/** Foto de producto sobre el fondo de la caja, una por color. */
+export const colorImage = (p: Product, color: ColorId): GalleryImage => photo(`${P}colores/${p.id}-${color}.jpg`);
 
 /** Tono único de las cajas de producto. */
 export const TONE = "#E4DFD8";
@@ -163,11 +187,3 @@ export const calc = (p: Product, mode: Mode, qty: string, waste: boolean) => {
 /** Stepper ±1, mínimo 0,5 m² o 1 pieza. */
 export const step = (q: string, d: number, mode: Mode) =>
   String(Math.round(Math.max(mode === "m2" ? 0.5 : 1, parseQ(q) + d) * 10) / 10);
-
-const LINE = "rgba(43,23,16,.16)";
-/** Grilla de juntas a escala para productos sin foto. */
-export const jointPattern = (p: Product, k: number) => ({
-  backgroundImage: `linear-gradient(${LINE} 1.5px,transparent 1.5px),linear-gradient(90deg,${LINE} 1.5px,transparent 1.5px)`,
-  backgroundSize: `${(p.w ?? 20) * k}px ${(p.h ?? 20) * k}px`,
-  backgroundPosition: "center",
-});

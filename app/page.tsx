@@ -80,7 +80,7 @@ export default function Home() {
               src="/images/productos/placa-escalera.png"
               alt="Muro revestido con placas de concreto"
               title="Revestimientos"
-              text="Placas, listones y cuadrados para muros interiores y fachadas. Textura, sombra y color en una sola superficie."
+              text="Placas y azulejos de concreto para muros interiores y fachadas. Textura, sombra y color en una sola superficie."
               cta="Ver revestimientos →"
             />
             <CategoryTile

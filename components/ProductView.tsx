@@ -7,6 +7,7 @@ import {
   COLORS,
   TONE,
   calc,
+  colorImage,
   colorName,
   fmtDec,
   fmtN,
@@ -20,7 +21,6 @@ import { cart, useCart } from "@/lib/cart";
 import { waLink } from "@/lib/whatsapp";
 import { WhatsappIcon } from "./Icons";
 import ProductImage from "./ProductImage";
-import { ComingSoon } from "./ProductCard";
 
 const segOn = "bg-carbon text-hormigon";
 const segOff = "bg-transparent text-carbon";
@@ -30,17 +30,17 @@ export default function ProductView({ p }: { p: Product }) {
   const [color, setColor] = useState<ColorId>("gris");
   const [mode, setMode] = useState<Mode>("m2");
   const [qty, setQty] = useState("10");
-  const [img, setImg] = useState(0);
+  // null = la foto del color elegido; número = una foto extra de la galería
+  const [extra, setExtra] = useState<number | null>(null);
 
   const c = calc(p, mode, qty, waste);
   const isRev = p.cat === "revestimientos";
-  const gi = Math.min(img, Math.max(0, p.gallery.length - 1));
-  const main = p.gallery[gi];
+  const main = extra === null ? colorImage(p, color) : p.gallery[extra];
   const name = fullName(p);
   const specs = [
     ["Medidas", p.dims],
     ["Rinde", `${fmtDec(p.perM2)} ${p.unit} por m²`],
-    ["Colores", "5 colores en la masa"],
+    ["Colores", `${COLORS.length} colores en la masa`],
     ["Uso", CATS[p.cat].use],
     ["Material", "Concreto de alta performance"],
     ["Fórmula", "Según uso: interior o exterior"],
@@ -53,25 +53,23 @@ export default function ProductView({ p }: { p: Product }) {
     <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,440px),1fr))] items-start gap-[clamp(40px,5vw,80px)]">
       <div className="flex flex-col gap-[14px]">
         <div className="relative aspect-square overflow-hidden rounded-[28px]" style={{ background: TONE }}>
-          <ProductImage product={p} image={main} inset="8%" scale={3} alt={name} sizes="(max-width: 960px) 100vw, 50vw" preload />
-          {!main && <ComingSoon large />}
+          <ProductImage image={main} alt={name} sizes="(max-width: 960px) 100vw, 50vw" preload />
         </div>
-        {p.gallery.length > 1 && (
-          <div className="grid grid-cols-5 gap-[10px]">
-            {p.gallery.map((g, i) => (
-              <button
-                type="button"
-                key={g.src + i}
-                onClick={() => setImg(i)}
-                aria-label={`Ver imagen ${i + 1}`}
-                className="relative aspect-square cursor-pointer overflow-hidden rounded-[14px] border-2 p-0"
-                style={{ background: TONE, borderColor: i === gi ? "#2B1710" : "transparent" }}
-              >
-                <ProductImage product={p} image={g} inset="10%" scale={1} sizes="120px" />
-              </button>
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-5 gap-[10px]">
+          {COLORS.map((col) => {
+            const on = extra === null && col.id === color;
+            return (
+              <Thumb key={col.id} on={on} label={`Ver en ${col.name}`} onClick={() => { setColor(col.id); setExtra(null); }}>
+                <ProductImage image={colorImage(p, col.id)} sizes="120px" />
+              </Thumb>
+            );
+          })}
+          {p.gallery.map((g, i) => (
+            <Thumb key={g.src} on={extra === i} label={`Ver foto ${i + 1}`} onClick={() => setExtra(i)}>
+              <ProductImage image={g} sizes="120px" />
+            </Thumb>
+          ))}
+        </div>
       </div>
 
       <div className="flex flex-col gap-7">
@@ -103,7 +101,10 @@ export default function ProductView({ p }: { p: Product }) {
                 <button
                   type="button"
                   key={col.id}
-                  onClick={() => setColor(col.id)}
+                  onClick={() => {
+                    setColor(col.id);
+                    setExtra(null);
+                  }}
                   aria-pressed={on}
                   className="flex h-[46px] cursor-pointer items-center gap-[10px] rounded-full border-[1.5px] pr-[18px] pl-2 text-[15px]"
                   style={{ borderColor: on ? "#2B1710" : "rgba(43,23,16,.25)", background: on ? "#FFFFFF" : "transparent" }}
@@ -206,12 +207,26 @@ export function RelatedCard({ p }: { p: Product }) {
   return (
     <Link href={`/producto/${p.id}`} className="flex flex-col gap-4 text-carbon hover:text-terracota">
       <div className="relative aspect-square overflow-hidden rounded-[20px]" style={{ background: TONE }}>
-        <ProductImage product={p} image={p.gallery[0]} inset="11%" scale={1.6} alt={fullName(p)} sizes="(max-width: 640px) 100vw, 25vw" />
+        <ProductImage image={colorImage(p, "gris")} alt={fullName(p)} sizes="(max-width: 640px) 100vw, 25vw" />
       </div>
       <div className="flex flex-col gap-[6px]">
         <span className="text-[22px] leading-[1.2] font-medium">{fullName(p)}</span>
         <span className="text-[14px] text-muted">{p.dims}</span>
       </div>
     </Link>
+  );
+}
+
+function Thumb({ on, label, onClick, children }: { on: boolean; label: string; onClick: () => void; children: React.ReactNode }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={label}
+      className="relative aspect-square cursor-pointer overflow-hidden rounded-[14px] border-2 p-0"
+      style={{ background: TONE, borderColor: on ? "#2B1710" : "transparent" }}
+    >
+      {children}
+    </button>
   );
 }

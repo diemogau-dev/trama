@@ -18,10 +18,12 @@ El prototipo de Claude Design (`Trama Web v3.dc.html`) manda sobre su README. Se
 - Todos los CTA abren WhatsApp con el mensaje armado.
 - Medidas de cobogós y rinde por m² son provisorios.
 - No se usa el isotipo; donde iba, va el logo `trama-carbon.svg`.
+- 4 colores de lanzamiento: Gris Natural, Gris Marengo, Terracota y Verde Olivo.
+- Nombres: revestimientos = Placa Lisa (100×50), Placa con Puntos de Anclaje (100×45), Placa Ripada (100×40), Azulejo de Concreto Rectangular (50×12) y Cuadrado. Cobogós: Diagonal, Circular, Cuadrado (ex Marco), Rectangular (ex Rendija), Dúo, Doble Círculo, Óvalo, Panal, Encastre. No usar "listón", "furos", "relieve", "marco" ni "rendija" como nombres.
 
 ## Estructura
 
-- `lib/catalog.ts` — colores, categorías, 12 productos, cálculo m²/piezas.
+- `lib/catalog.ts` — colores, categorías, 14 productos, cálculo m²/piezas. `LEGACY_IDS` redirige URLs viejas y migra carritos guardados.
 - `lib/content.ts` — textos de la home (beneficios, pasos, FAQ) y galería.
 - `lib/whatsapp.ts` — único lugar con el número (`NEXT_PUBLIC_WHATSAPP`, fallback 595981625546).
 - `lib/cart.ts` — carrito global persistido en `localStorage['trama-cart-v3']`.
@@ -30,8 +32,10 @@ El prototipo de Claude Design (`Trama Web v3.dc.html`) manda sobre su README. Se
 ## Imágenes (`public/images/`)
 
 - `logo/` logotipos SVG.
-- `recortes/` piezas sobre fondo blanco (se muestran con `mix-blend-mode: multiply`).
+- `recortes/` piezas viejas sobre fondo blanco (ya no se muestran; quedan como fuente).
 - `productos/` fotos de producto.
+- `productos/colores/` foto de estudio por SKU y color (`{id}-{color}.jpg`, 1600×1600, pieza sobre el fondo `tone`). Es la imagen principal de tarjetas, ficha y carrito. Se generan recortando y recoloreando las fotos de `productos/originales/` (Placa Lisa = placa con anclajes sin los agujeros; Azulejo Cuadrado = las dos puntas del rectangular; Óvalo, Panal y Encastre salen de fotos viejas).
+- `productos/originales/` fotos sin retocar del taller, con nombre descriptivo.
 - `obras/` fotos de muros terminados; `obras/revestimientos/` fotos originales de placas; `obras/galeria/` versiones retocadas (luz, nitidez, agrandadas) que usa la home.
 - `taller/` fotos del taller.
 - `og/` imagen para compartir en redes (`trama-logo.png`: logo hormigón sobre fondo carbón, 1200×630).

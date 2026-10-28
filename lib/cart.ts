@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { parseQ, type ColorId, type Mode } from "./catalog";
+import { COLORS, LEGACY_COLORS, LEGACY_IDS, PRODUCTS, parseQ, type ColorId, type Mode } from "./catalog";
 
 export type CartLine = { key: string; id: string; color: ColorId; mode: Mode; qty: string };
 type State = { items: CartLine[]; waste: boolean; open: boolean; menuOpen: boolean };
@@ -18,8 +18,18 @@ function load() {
   loaded = true;
   try {
     const c = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
-    if (c && Array.isArray(c.items)) state = { ...state, items: c.items, waste: c.waste !== false };
+    if (c && Array.isArray(c.items)) state = { ...state, items: migrate(c.items), waste: c.waste !== false };
   } catch {}
+}
+
+/** Carritos guardados con ids o colores que ya no existen: se renombran o se descartan. */
+function migrate(items: CartLine[]): CartLine[] {
+  return items.flatMap((l) => {
+    const id = LEGACY_IDS[l.id] ?? l.id;
+    if (!PRODUCTS.some((p) => p.id === id)) return [];
+    const color = COLORS.some((c) => c.id === l.color) ? l.color : (LEGACY_COLORS[l.color] ?? "gris");
+    return [{ ...l, id, color }];
+  });
 }
 
 function set(patch: Partial<State> | ((s: State) => Partial<State>)) {

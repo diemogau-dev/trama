@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { LEGACY_IDS } from "./lib/catalog";
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -37,6 +38,13 @@ const nextConfig: NextConfig = {
   images: {
     // 90 solo para la foto del hero, que se ve a pantalla completa.
     qualities: [75, 90],
+  },
+  async redirects() {
+    return Object.entries(LEGACY_IDS).map(([from, to]) => ({
+      source: `/producto/${from}`,
+      destination: `/producto/${to}`,
+      permanent: true,
+    }));
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];

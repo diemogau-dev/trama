@@ -7,6 +7,7 @@ import {
   COLORS,
   TONE,
   calc,
+  colorImage,
   colorName,
   fmtDec,
   fmtN,
@@ -103,7 +104,7 @@ export default function CartDrawer() {
             return (
               <div key={l.key} className="grid grid-cols-[76px_minmax(0,1fr)] gap-4 border-b border-[rgba(43,23,16,.16)] py-[22px]">
                 <div className="relative h-[76px] w-[76px] overflow-hidden rounded-[14px]" style={{ background: TONE }}>
-                  <ProductImage product={p} image={p.gallery[0]} inset="8%" scale={0.6} sizes="76px" />
+                  <ProductImage image={colorImage(p, l.color)} sizes="76px" />
                 </div>
                 <div className="flex min-w-0 flex-col gap-3">
                   <div className="flex items-start justify-between gap-[10px]">

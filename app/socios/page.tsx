@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const ARQ = [
   "Precio especial para especificar en obra",
-  "Muestras físicas en los 5 colores",
+  "Muestras físicas en los 4 colores",
   "Fichas técnicas y bloques CAD",
   "Asesoramiento en modulación y colocación",
   "Producción y entregas por etapas de obra",
