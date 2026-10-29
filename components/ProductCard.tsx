@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { COLORS, TONE, colorImage, fmtDec, fullName, type ColorId, type Product } from "@/lib/catalog";
+import { COLORS, TONE, colorImage, fmtDec, fmtGs, fullName, priceM2, type ColorId, type Product } from "@/lib/catalog";
 import { cart } from "@/lib/cart";
 import ProductImage from "./ProductImage";
 
@@ -21,6 +21,10 @@ export default function ProductCard({ p }: { p: Product }) {
         </Link>
         <span className="text-[14px] leading-[1.4] text-muted">
           {p.dims} · {fmtDec(p.perM2)} {p.unit}/m²
+        </span>
+        <span className="flex flex-wrap items-baseline gap-x-2 text-[17px] font-medium">
+          {fmtGs(p.price)}
+          <span className="text-[14px] font-normal text-muted">c/u · {fmtGs(priceM2(p))}/m²</span>
         </span>
         <div className="flex items-center gap-[6px]">
           {COLORS.map((c) => (

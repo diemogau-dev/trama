@@ -10,8 +10,10 @@ import {
   colorImage,
   colorName,
   fmtDec,
+  fmtGs,
   fmtN,
   fullName,
+  priceM2,
   step,
   type ColorId,
   type Mode,
@@ -37,7 +39,10 @@ export default function ProductView({ p }: { p: Product }) {
   const isRev = p.cat === "revestimientos";
   const main = extra === null ? colorImage(p, color) : p.gallery[extra];
   const name = fullName(p);
+  const single = p.unit === "placas" ? "placa" : p.unit === "azulejos" ? "azulejo" : "pieza";
   const specs = [
+    ["Precio", `${fmtGs(p.price)} por ${single}`],
+    ["Precio por m²", fmtGs(priceM2(p))],
     ["Medidas", p.dims],
     ["Rinde", `${fmtDec(p.perM2)} ${p.unit} por m²`],
     ["Colores", `${COLORS.length} colores en la masa`],
@@ -45,7 +50,18 @@ export default function ProductView({ p }: { p: Product }) {
     ["Material", "Concreto de alta performance"],
   ];
   const wa = waLink(
-    `¡Hola Trama! Quiero presupuesto para ${isRev ? "el revestimiento" : "el cobogó"} ${p.name} (${p.dims}) en ${colorName(color)}: ${fmtDec(c.m2)} m² (${fmtN(c.pieces)} ${p.unit}). La obra queda en: `,
+    [
+      `¡Hola Trama! Quiero hacer un pedido de ${isRev ? "revestimiento" : "cobogó"}:`,
+      "",
+      `• ${name} (${p.dims}) · ${colorName(color)}`,
+      `  Cantidad: ${fmtN(c.pieces)} ${p.unit} (${fmtDec(c.m2)} m²${mode === "m2" && waste ? " + 5% por cortes" : ""})`,
+      `  ${fmtN(c.pieces)} × ${fmtGs(p.price)} = ${fmtGs(c.total)}`,
+      "",
+      `Total: ${fmtGs(c.total)} (IVA incluido, sin flete)`,
+      `Seña 50%: ${fmtGs(Math.round(c.total / 2))}`,
+      "",
+      "La obra queda en: ",
+    ].join("\n"),
   );
 
   return (
@@ -171,7 +187,13 @@ export default function ProductView({ p }: { p: Product }) {
               <span className="text-muted">Superficie</span>
               <span className="text-[22px] font-medium">{fmtDec(c.m2)} m²</span>
             </div>
-            {mode === "m2" && waste && <span className="text-[14px] text-muted">Incluye 5% extra por cortes y roturas.</span>}
+            <div className="flex justify-between gap-3 border-t border-[rgba(43,23,16,.14)] pt-[10px]">
+              <span className="text-muted">Total</span>
+              <span className="text-[22px] font-medium">{fmtGs(c.total)}</span>
+            </div>
+            <span className="text-[14px] text-muted">
+              {mode === "m2" && waste ? "Incluye 5% extra por cortes y roturas. " : ""}IVA incluido. Flete y colocación aparte.
+            </span>
           </div>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-[10px]">
             <button
@@ -210,7 +232,9 @@ export function RelatedCard({ p }: { p: Product }) {
       </div>
       <div className="flex flex-col gap-[6px]">
         <span className="text-[22px] leading-[1.2] font-medium">{fullName(p)}</span>
-        <span className="text-[14px] text-muted">{p.dims}</span>
+        <span className="text-[14px] text-muted">
+          {p.dims} · {fmtGs(p.price)} c/u
+        </span>
       </div>
     </Link>
   );

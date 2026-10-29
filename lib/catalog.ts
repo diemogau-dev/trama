@@ -1,5 +1,5 @@
 // Catálogo de Trama. Fuente: script del prototipo (Trama Web v3.dc.html), que manda sobre catalog.json.
-// Medidas de cobogós y rinde por m² son provisorios.
+// Medidas, rinde y precios: planilla de costos de Juan (TRAMA_productos.xlsx, 29/10/2026).
 
 export type ColorId = "gris" | "marengo" | "terracota" | "olivo";
 export type Color = { id: ColorId; name: string; sw: string };
@@ -48,6 +48,8 @@ export type Product = {
   name: string;
   dims: string;
   perM2: number;
+  /** Precio por pieza en guaraníes, IVA incluido. Flete y colocación aparte. */
+  price: number;
   unit: string;
   /** Fotos extra (obra, taller, detalle). Las fotos por color salen de colorImage(). */
   gallery: GalleryImage[];
@@ -62,17 +64,17 @@ const photo = (src: string): GalleryImage => ({ src, kind: "photo" });
 
 export const PRODUCTS: Product[] = [
   {
-    id: "placa-lisa", cat: "revestimientos", name: "Placa Lisa", dims: "100 × 50 cm", perM2: 2, unit: "placas",
+    id: "placa-lisa", cat: "revestimientos", name: "Placa Lisa", dims: "100 × 50 × 2 cm", perM2: 2, price: 108000, unit: "placas",
     gallery: [photo(P + "rev-lisa-muro.jpg")],
     desc: "Superficie lisa y continua, con el poro natural del concreto. Un fondo sereno para livings, recepciones y fachadas.",
   },
   {
-    id: "placa-anclaje", cat: "revestimientos", name: "Placa con Puntos de Anclaje", dims: "100 × 45 cm", perM2: 2.2, unit: "placas",
+    id: "placa-anclaje", cat: "revestimientos", name: "Placa con Puntos de Anclaje", dims: "100 × 45 × 2 cm", perM2: 2.2, price: 97200, unit: "placas",
     gallery: [photo(F + "rev-placa-anclaje-gris.jpg"), photo(F + "rev-placa-anclaje-detalle.jpg"), photo(P + "material-placa.jpg")],
     desc: "Placa lisa con seis puntos de anclaje a la vista que marcan un ritmo de sombras, como el concreto visto con pasadores de encofrado.",
   },
   {
-    id: "placa-ripada", cat: "revestimientos", name: "Placa Ripada", dims: "100 × 40 cm", perM2: 2.5, unit: "placas",
+    id: "placa-ripada", cat: "revestimientos", name: "Placa Ripada", dims: "100 × 40 × 3 cm", perM2: 2.5, price: 86400, unit: "placas",
     gallery: [
       photo(F + "rev-placa-ripada-gris.jpg"),
       photo(F + "rev-placa-ripada-perspectiva.jpg"),
@@ -82,17 +84,17 @@ export const PRODUCTS: Product[] = [
     desc: "Estrías verticales en relieve que dibujan líneas de luz y sombra a lo largo del día. Ideal para muros con luz rasante.",
   },
   {
-    id: "azulejo-rectangular", cat: "revestimientos", name: "Azulejo de Concreto Rectangular", dims: "50 × 12 cm", perM2: 16.7, unit: "azulejos",
+    id: "azulejo-rectangular", cat: "revestimientos", name: "Azulejo de Concreto Rectangular", dims: "50 × 12 × 1,3 cm", perM2: 16.7, price: 13000, unit: "azulejos",
     gallery: [photo(F + "azulejo-rectangular-gris.jpg")],
     desc: "Pieza angosta para colocar trabada, en espiga o en vertical. Arma muros con ritmo de ladrillo visto, en concreto.",
   },
   {
-    id: "azulejo-cuadrado", cat: "revestimientos", name: "Azulejo de Concreto Cuadrado", dims: "10 × 10 cm", perM2: 100, unit: "azulejos",
+    id: "azulejo-cuadrado", cat: "revestimientos", name: "Azulejo de Concreto Cuadrado", dims: "10 × 10 × 2 cm", perM2: 100, price: 2200, unit: "azulejos",
     gallery: [photo(P + "rev-cuadrado.jpg")],
     desc: "Pieza chica para revestir con detalle: barras, frentes de mesada, nichos y muros curvos.",
   },
   {
-    id: "diagonal", cat: "cobogos", name: "Diagonal", dims: "20 × 20 × 7 cm", perM2: 25, unit: "piezas",
+    id: "diagonal", cat: "cobogos", name: "Diagonal", dims: "30 × 30 × 15 cm", perM2: 11.1, price: 48000, unit: "piezas",
     gallery: [
       photo(F + "cob-diagonal-gris.jpg"),
       photo(P + "cob-diagonal-estudio.jpg"),
@@ -103,32 +105,32 @@ export const PRODUCTS: Product[] = [
     desc: "Un cuadrado partido en dos: una mitad abierta y otra en relieve. Girando las piezas armás rombos, zigzags o un muro entero de triángulos.",
   },
   {
-    id: "circular", cat: "cobogos", name: "Circular", dims: "20 × 20 × 7 cm", perM2: 25, unit: "piezas",
+    id: "circular", cat: "cobogos", name: "Circular", dims: "20 × 20 × 8 cm", perM2: 25, price: 22000, unit: "piezas",
     gallery: [photo(F + "cob-circular-terracota.jpg"), photo(F + "cob-circular-marengo.jpg")],
     desc: "Una abertura redonda rodeada por un bisel suave que se hunde hacia el centro. La luz entra en anillos y el muro se vuelve un juego de círculos.",
   },
   {
-    id: "cuadrado", cat: "cobogos", name: "Cuadrado", dims: "20 × 20 × 7 cm", perM2: 25, unit: "piezas",
+    id: "cuadrado", cat: "cobogos", name: "Cuadrado", dims: "20 × 20 × 8 cm", perM2: 25, price: 21000, unit: "piezas",
     gallery: [photo(F + "cob-cuadrado-olivo.jpg")],
     desc: "Una ventana chica dentro de un marco ancho. Más privacidad, sombra suave y un ritmo tranquilo.",
   },
   {
-    id: "rectangular", cat: "cobogos", name: "Rectangular", dims: "30 × 15 × 7 cm", perM2: 22, unit: "piezas",
+    id: "rectangular", cat: "cobogos", name: "Rectangular", dims: "40 × 20 × 8 cm", perM2: 12.5, price: 34000, unit: "piezas",
     gallery: [photo(F + "cob-rectangular-gris.jpg"), photo(T + "taller-mesa.jpg")],
     desc: "Una abertura larga y recta, como una persiana de concreto. Para muros perimetrales, cocheras y lavaderos.",
   },
   {
-    id: "duo", cat: "cobogos", name: "Dúo", dims: "30 × 19 × 7 cm", perM2: 17.5, unit: "piezas",
+    id: "duo", cat: "cobogos", name: "Dúo", dims: "40 × 25 × 8 cm", perM2: 10, price: 46000, unit: "piezas",
     gallery: [photo(F + "cob-duo-gris.jpg"), photo(P + "cob-duo-piezas.jpg")],
     desc: "Dos aberturas de distinto tamaño en una pieza apaisada. Al rotarlas, el muro nunca se repite igual.",
   },
   {
-    id: "doble-circulo", cat: "cobogos", name: "Doble Círculo", dims: "40 × 19 × 7 cm", perM2: 13.2, unit: "piezas",
+    id: "doble-circulo", cat: "cobogos", name: "Doble Círculo", dims: "40 × 20 × 8 cm", perM2: 12.5, price: 40000, unit: "piezas",
     gallery: [photo(F + "cob-doble-circulo-terracota.jpg")],
     desc: "Pieza apaisada con dos aberturas redondas y una superficie ondulada que cambia con la luz del día. Para muros con carácter escultórico.",
   },
   {
-    id: "ovalo", cat: "cobogos", name: "Óvalo", dims: "40 × 14 × 7 cm", perM2: 17.8, unit: "piezas",
+    id: "ovalo", cat: "cobogos", name: "Óvalo", dims: "40 × 14 × 20 cm", perM2: 17.9, price: 28000, unit: "piezas",
     gallery: [
       photo(P + "cob-ovalo.jpg"),
       photo(P + "cob-ovalo-terracota.jpg"),
@@ -139,12 +141,12 @@ export const PRODUCTS: Product[] = [
     desc: "Pieza rectangular con el centro ovalado. Repetida, arma muros largos con un ritmo suave que de noche, con luz rasante, se vuelve escultura.",
   },
   {
-    id: "panal", cat: "cobogos", name: "Panal", dims: "23 × 20 × 7 cm", perM2: 24, unit: "piezas",
+    id: "panal", cat: "cobogos", name: "Panal", dims: "33 × 29 × 9 cm", perM2: 10.4, price: 36000, unit: "piezas",
     gallery: [photo(T + "taller-mesa.jpg")],
     desc: "Hexágono con abertura circular. Encastra en panal y deja pasar mucha luz y mucho aire.",
   },
   {
-    id: "encastre", cat: "cobogos", name: "Encastre", dims: "20 × 20 × 7 cm", perM2: 25, unit: "piezas",
+    id: "encastre", cat: "cobogos", name: "Encastre", dims: "40 × 40 × 9 cm", perM2: 6.3, price: 78000, unit: "piezas",
     gallery: [],
     desc: "Las muescas laterales se encajan con la pieza vecina y el muro se lee como un tejido.",
   },
@@ -175,13 +177,18 @@ export const fmtN = (n: number) => String(Math.round(n)).replace(/\B(?=(\d{3})+(
 export const fmtDec = (n: number) => String(Math.round(n * 10) / 10).replace(".", ",");
 export const parseQ = (s: string | number) => Math.max(0, parseFloat(String(s).replace(",", ".")) || 0);
 
+/** Guaraníes con punto de miles: "Gs. 48.000". */
+export const fmtGs = (n: number) => "Gs. " + fmtN(n);
+/** Precio equivalente por m² según el rinde de la pieza. */
+export const priceM2 = (p: Product) => Math.round(p.price * p.perM2);
+
 export type Mode = "m2" | "u";
 
-/** m² → piezas = ceil(m2 * perM2 * (waste ? 1.05 : 1)); piezas → m2 = piezas / perM2 */
+/** m² → piezas = ceil(m2 * perM2 * (waste ? 1.05 : 1)); piezas → m2 = piezas / perM2; total = piezas * precio */
 export const calc = (p: Product, mode: Mode, qty: string, waste: boolean) => {
   const q = parseQ(qty);
   const pieces = mode === "m2" ? Math.ceil(q * p.perM2 * (waste ? 1.05 : 1)) : Math.round(q);
-  return { pieces, m2: mode === "m2" ? q : pieces / p.perM2 };
+  return { pieces, m2: mode === "m2" ? q : pieces / p.perM2, total: pieces * p.price };
 };
 
 /** Stepper ±1, mínimo 0,5 m² o 1 pieza. */

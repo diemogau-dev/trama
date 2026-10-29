@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { COLORS, LEGACY_COLORS, LEGACY_IDS, PRODUCTS, parseQ, type ColorId, type Mode } from "./catalog";
+import { COLORS, LEGACY_COLORS, LEGACY_IDS, PRODUCTS, calc, getProduct, parseQ, type ColorId, type Mode } from "./catalog";
 
 export type CartLine = { key: string; id: string; color: ColorId; mode: Mode; qty: string };
 type State = { items: CartLine[]; waste: boolean; open: boolean; menuOpen: boolean };
@@ -55,6 +55,14 @@ const getSnapshot = () => {
 
 export const useCart = () => useSyncExternalStore(subscribe, getSnapshot, () => SERVER_STATE);
 
+/** Pasa una cantidad cargada en m² o piezas a la unidad de la línea que ya está en el carrito. */
+function toMode(id: string, from: Mode, qty: string, to: Mode, waste: boolean) {
+  const p = getProduct(id);
+  if (from === to || !p) return parseQ(qty);
+  const c = calc(p, from, qty, waste);
+  return to === "u" ? c.pieces : c.m2;
+}
+
 export const cart = {
   add(id: string, color: ColorId = "gris", mode: Mode = "m2", qty = "10") {
     set((s) => {
@@ -63,7 +71,7 @@ export const cart = {
       if (i >= 0) {
         items = s.items.slice();
         const l = items[i];
-        items[i] = l.mode === mode ? { ...l, qty: String(parseQ(l.qty) + parseQ(qty)) } : { ...l, mode, qty };
+        items[i] = { ...l, qty: String(Math.round((parseQ(l.qty) + toMode(id, mode, qty, l.mode, s.waste)) * 10) / 10) };
       } else {
         items = [...s.items, { key: `${id}-${color}-${Date.now()}`, id, color, mode, qty }];
       }

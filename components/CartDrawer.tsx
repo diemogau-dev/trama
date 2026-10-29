@@ -10,6 +10,7 @@ import {
   colorImage,
   colorName,
   fmtDec,
+  fmtGs,
   fmtN,
   fullName,
   getProduct,
@@ -40,18 +41,26 @@ export default function CartDrawer() {
     const p = getProduct(l.id);
     return p ? [{ l, p, c: calc(p, l.mode, l.qty, waste) }] : [];
   });
-  const tot = lines.reduce((a, { c }) => ({ m2: a.m2 + c.m2, pieces: a.pieces + c.pieces }), { m2: 0, pieces: 0 });
+  const tot = lines.reduce(
+    (a, { c }) => ({ m2: a.m2 + c.m2, pieces: a.pieces + c.pieces, total: a.total + c.total }),
+    { m2: 0, pieces: 0, total: 0 },
+  );
   const waCart = waLink(
     [
-      "¡Hola Trama! Quiero pedir presupuesto para:",
+      "¡Hola Trama! Quiero hacer este pedido:",
       "",
-      ...lines.map(
-        ({ l, p, c }) => `• ${fullName(p)} (${p.dims}) · ${colorName(l.color)} — ${fmtDec(c.m2)} m² (${fmtN(c.pieces)} piezas)`,
-      ),
+      ...lines.flatMap(({ l, p, c }, i) => [
+        `${i + 1}. ${fullName(p)} (${p.dims}) · ${colorName(l.color)}`,
+        `   Cantidad: ${fmtN(c.pieces)} ${p.unit} (${fmtDec(c.m2)} m²${l.mode === "m2" && waste ? " + 5% por cortes" : ""})`,
+        `   ${fmtN(c.pieces)} × ${fmtGs(p.price)} = ${fmtGs(c.total)}`,
+        "",
+      ]),
+      `Superficie: ${fmtDec(tot.m2)} m² · ${fmtN(tot.pieces)} piezas en total`,
+      `Total: ${fmtGs(tot.total)} (IVA incluido, sin flete)`,
+      `Seña 50%: ${fmtGs(Math.round(tot.total / 2))}`,
       "",
-      waste ? "(Incluye 5% extra por cortes)" : "",
       "La obra queda en: ",
-      "¿Me pasan presupuesto con flete?",
+      "¿Me pasan el costo del flete?",
     ].join("\n"),
   );
 
@@ -171,9 +180,12 @@ export default function CartDrawer() {
                     </div>
                     <span className="text-[14px] text-muted">{l.mode === "m2" ? "m² de muro" : p.unit}</span>
                   </div>
-                  <span className="text-[14px] text-muted">
-                    {fmtN(c.pieces)} {p.unit} · {fmtDec(c.m2)} m²
-                  </span>
+                  <div className="flex items-baseline justify-between gap-3 text-[14px] text-muted">
+                    <span>
+                      {fmtN(c.pieces)} {p.unit} · {fmtDec(c.m2)} m² · {fmtGs(p.price)} c/u
+                    </span>
+                    <span className="text-[16px] font-medium text-carbon">{fmtGs(c.total)}</span>
+                  </div>
                 </div>
               </div>
             );
@@ -203,10 +215,19 @@ export default function CartDrawer() {
                 <span className="text-muted">Piezas</span>
                 <span className="font-medium">{fmtN(tot.pieces)}</span>
               </div>
+              <div className="flex justify-between text-[18px]">
+                <span className="font-medium">Total</span>
+                <span className="font-medium">{fmtGs(tot.total)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted">Seña 50%</span>
+                <span className="font-medium">{fmtGs(Math.round(tot.total / 2))}</span>
+              </div>
+              <span className="text-[13px] text-muted">IVA incluido. Flete y colocación aparte.</span>
             </div>
             <div className="flex items-start gap-3 rounded-[14px] bg-hormigon px-4 py-[14px] text-[14px] leading-[1.5]">
               <span className="mt-[6px] h-2 w-[18px] shrink-0 rounded-[4px] bg-terracota" />
-              Fabricación sobre pedido. Seña del 50% al confirmar y entrega en 30 días. Te enviamos el presupuesto con flete por WhatsApp.
+              Fabricación sobre pedido. Seña del 50% al confirmar y entrega en 30 días. Te confirmamos el flete por WhatsApp.
             </div>
             <a
               href={waCart}
@@ -215,7 +236,7 @@ export default function CartDrawer() {
               className="flex h-[58px] items-center justify-center gap-[10px] rounded-full bg-terracota text-[17px] font-medium text-white hover:bg-carbon hover:text-hormigon"
             >
               <WhatsappIcon size={20} />
-              Pedir presupuesto por WhatsApp
+              Enviar pedido por WhatsApp
             </a>
           </div>
         )}

@@ -18,19 +18,19 @@ export const BENEFITS: [string, string][] = [
 export const STEPS: [string, string][] = [
   ["Elegí tus piezas", "Recorré la tienda y elegí diseño y color entre los cuatro de cada pieza."],
   ["Calculá tu muro", "En el carrito cargás los m² de tu pared y te decimos cuántas piezas necesitás."],
-  ["Confirmá y señá", "Te enviamos el presupuesto con flete por WhatsApp. Confirmás con una seña del 50%."],
+  ["Confirmá y señá", "Nos mandás el pedido por WhatsApp, te confirmamos el flete y confirmás con una seña del 50%."],
   ["Fabricamos y entregamos", "En 30 días tu pedido está listo. Lo llevamos a tu obra o lo retirás en el taller."],
 ];
 
 export const FAQS: [string, string][] = [
-  ["¿Por qué no hay precios en la web?", "Cada pedido se fabrica para tu obra, y el precio depende de la pieza, la cantidad, el color y el destino. Armá tu carrito y te pasamos el presupuesto por WhatsApp en el día."],
+  ["¿Los precios incluyen IVA y flete?", "Los precios de la web son por pieza e incluyen IVA. El flete se calcula según destino y volumen, y la colocación va aparte. Armá tu carrito y te confirmamos el flete por WhatsApp en el día."],
   ["¿Cuánto tarda mi pedido?", "Todo es sobre pedido: fabricamos y entregamos en 30 días desde que confirmás con la seña. Para pedidos muy grandes te confirmamos el plazo al cotizar."],
   ["¿Cómo se paga?", "Una seña del 50% al confirmar el pedido y el saldo antes de la entrega. Aceptamos transferencia bancaria y efectivo."],
   ["¿Qué colores tienen?", "Todas las piezas se fabrican en cuatro colores: gris natural, gris marengo, terracota y verde olivo. El pigmento va en la masa del concreto."],
   ["¿Cuántas piezas entran por metro cuadrado?", "Depende del diseño. Cada producto indica cuántas piezas lleva un m². En el carrito cargás los m² de tu muro y lo calculamos, con un 5% extra por cortes si querés."],
   ["¿Sirven para exterior?", "Sí. Tenemos una fórmula de concreto para exterior con baja absorción de agua, pensada para sol, lluvia y humedad."],
   ["¿Cómo se colocan?", "Los cobogós se asientan con mortero como un ladrillo. Los revestimientos se pegan con adhesivo cementicio. Cualquier albañil puede hacerlo y te enviamos la guía de colocación."],
-  ["¿Hacen envíos al interior?", "Sí, a todo el Paraguay. El flete se calcula según destino y volumen, y va incluido en el presupuesto."],
+  ["¿Hacen envíos al interior?", "Sí, a todo el Paraguay. El flete se calcula según destino y volumen, y te lo confirmamos por WhatsApp antes de señar."],
   ["¿Puedo ver las piezas antes de comprar?", "Sí. Podés visitar el taller en Asunción coordinando por WhatsApp. Si sos arquitecto o revendedor, sumate a Socios Trama y te acercamos muestras."],
 ];
 

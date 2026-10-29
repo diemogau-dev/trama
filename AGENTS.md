@@ -14,16 +14,17 @@ El prototipo de Claude Design (`Trama Web v3.dc.html`) manda sobre su README. Se
 
 ## Reglas de contenido
 
-- Sin precios y sin pago online. Todo es sobre pedido: seña 50%, entrega en 30 días.
+- Precios por pieza publicados en `lib/catalog.ts` (`price`, Gs. con IVA; flete y colocación aparte). Sin pago online. Todo es sobre pedido: seña 50%, entrega en 30 días.
+- Precios (29/10/2026): revestimientos a Gs. 216.000/m² (20% sobre Pietra Bella); cobogós según análisis de mercado.
 - Todos los CTA abren WhatsApp con el mensaje armado.
-- Medidas de cobogós y rinde por m² son provisorios.
+- Medidas, rinde por m² y costos: planilla de Juan `TRAMA_productos.xlsx` (Drive).
 - No se usa el isotipo; donde iba, va el logo `trama-carbon.svg`.
 - 4 colores de lanzamiento: Gris Natural, Gris Marengo, Terracota y Verde Olivo.
 - Nombres: revestimientos = Placa Lisa (100×50), Placa con Puntos de Anclaje (100×45), Placa Ripada (100×40), Azulejo de Concreto Rectangular (50×12) y Cuadrado. Cobogós: Diagonal, Circular, Cuadrado (ex Marco), Rectangular (ex Rendija), Dúo, Doble Círculo, Óvalo, Panal, Encastre. No usar "listón", "furos", "relieve", "marco" ni "rendija" como nombres.
 
 ## Estructura
 
-- `lib/catalog.ts` — colores, categorías, 14 productos, cálculo m²/piezas. `LEGACY_IDS` redirige URLs viejas y migra carritos guardados.
+- `lib/catalog.ts` — colores, categorías, 14 productos con precio, cálculo m²/piezas/total. `LEGACY_IDS` redirige URLs viejas y migra carritos guardados.
 - `lib/content.ts` — textos de la home (beneficios, pasos, FAQ) y galería.
 - `lib/whatsapp.ts` — único lugar con el número (`NEXT_PUBLIC_WHATSAPP`, fallback 595991629500 = 0991 629 500).
 - `lib/cart.ts` — carrito global persistido en `localStorage['trama-cart-v3']`.
