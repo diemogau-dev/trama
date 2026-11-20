@@ -90,7 +90,7 @@ export const PRODUCTS: Product[] = [
     desc: "Pieza angosta para colocar trabada, en espiga o en vertical. Arma muros con ritmo de ladrillo visto, en concreto.",
   },
   {
-    id: "azulejo-cuadrado", cat: "revestimientos", name: "Azulejo de Concreto Cuadrado", dims: "10 × 10 × 2 cm", perM2: 90.7, price: 7700, unit: "azulejos",
+    id: "azulejo-cuadrado", cat: "revestimientos", name: "Azulejo de Concreto Cuadrado", dims: "10 × 10 × 1,3 cm", perM2: 90.7, price: 2300, unit: "azulejos",
     gallery: [photo(P + "rev-cuadrado.jpg")],
     desc: "Pieza chica para revestir con detalle: barras, frentes de mesada, nichos y muros curvos.",
   },
