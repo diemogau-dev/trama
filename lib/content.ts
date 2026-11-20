@@ -27,7 +27,7 @@ export const FAQS: [string, string][] = [
   ["¿Cuánto tarda mi pedido?", "Todo es sobre pedido: fabricamos y entregamos en 30 días desde que confirmás con la seña. Para pedidos muy grandes te confirmamos el plazo al cotizar."],
   ["¿Cómo se paga?", "Una seña del 50% al confirmar el pedido y el saldo antes de la entrega. Aceptamos transferencia bancaria y efectivo."],
   ["¿Qué colores tienen?", "Todas las piezas se fabrican en cuatro colores: gris natural, gris marengo, terracota y verde olivo. El pigmento va en la masa del concreto."],
-  ["¿Cuántas piezas entran por metro cuadrado?", "Depende del diseño. Cada producto indica cuántas piezas lleva un m². En el carrito cargás los m² de tu muro y lo calculamos, con un 5% extra por cortes si querés."],
+  ["¿Cuántas piezas entran por metro cuadrado?", "Depende del diseño. Cada producto indica cuántas piezas lleva un m², ya contando la junta. En el carrito cargás los m² de tu muro y lo calculamos, con un 5% extra por cortes si querés."],
   ["¿Sirven para exterior?", "Sí. Tenemos una fórmula de concreto para exterior con baja absorción de agua, pensada para sol, lluvia y humedad."],
   ["¿Cómo se colocan?", "Los cobogós se asientan con mortero como un ladrillo. Los revestimientos se pegan con adhesivo cementicio. Cualquier albañil puede hacerlo y te enviamos la guía de colocación."],
   ["¿Hacen envíos al interior?", "Sí, a todo el Paraguay. El flete se calcula según destino y volumen, y te lo confirmamos por WhatsApp antes de señar."],

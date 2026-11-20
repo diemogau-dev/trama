@@ -15,7 +15,9 @@ El prototipo de Claude Design (`Trama Web v3.dc.html`) manda sobre su README. Se
 ## Reglas de contenido
 
 - Precios por pieza publicados en `lib/catalog.ts` (`price`, Gs. con IVA; flete y colocación aparte). Sin pago online. Todo es sobre pedido: seña 50%, entrega en 30 días.
-- Precios (29/10/2026): revestimientos a Gs. 216.000/m² (20% sobre Pietra Bella); cobogós según análisis de mercado.
+- Precios: pestaña "Costos y precios" de la planilla TRAMA_productos (Google Sheets). Revestimientos a ~Gs. 216.000/m² (20% sobre Pietra Bella); cobogós según análisis de mercado; Azulejo Cuadrado a Gs. 7.700 (margen promedio del resto).
+- Rinde por m² con junta: cobogós 1 cm, placas 3 mm, azulejos 5 mm; Panal hexagonal (29 cm entre caras planas).
+- Los cobogós se entregan con las dos caras pegadas.
 - Todos los CTA abren WhatsApp con el mensaje armado.
 - Medidas, rinde por m² y costos: planilla de Juan `TRAMA_productos.xlsx` (Drive).
 - No se usa el isotipo; donde iba, va el logo `trama-carbon.svg`.
